@@ -34,7 +34,6 @@ export default class Consultants extends React.Component {
       FirstName: this.state.firstname,
       LastName: this.state.lastname,
     }
-    console.log(consultant);
     ConsultantsStore.createConsultant(consultant);
   }
 
@@ -50,8 +49,6 @@ export default class Consultants extends React.Component {
 
   render() {
 
-    ConsultantsStore.getAll();
-    console.log(this.state.consultants);
     const ConsultantsComponents = this.state.consultants.map((consultant) => {
       return <Consultant key={consultant.id} {...consultant} />;
     })

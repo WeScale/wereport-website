@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 
 import ConnectStore from '../store/ConnectStore';
-import Connect from '../pages/Connect';
 
 export default class Nav extends React.Component {
   constructor() {

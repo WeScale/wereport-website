@@ -12,6 +12,22 @@ class ClientsStore extends EventEmitter {
         return this.clients;
     }
 
+    createClient(clientData){
+        fetch('http://localhost:8080/clients', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ConnectStore.getToken(),
+                },
+                body: JSON.stringify(clientData),
+            }).then(response => response.json())
+            .then(json => {
+                console.log(json);
+                this.clients.push(json);
+                this.emit("create")
+            });
+    }
+
     getClients(){
         fetch('http://localhost:8080/clients', {
                 method: "GET",
@@ -22,11 +38,7 @@ class ClientsStore extends EventEmitter {
             }).then(response => response.json())
             .then(json => {
                 console.log(json);
-                if(json){
-                    this.clients = json;
-                } else {
-                    this.clients = []
-                }
+                this.clients = json;
                 this.emit("change")
             });
     }

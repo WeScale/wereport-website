@@ -8,10 +8,7 @@ class Connect extends Component {
         super();
 
         this.state = {
-            token_id: '',
-            username: '',
             connect: false,
-            data: []
         }
     }
 
@@ -19,8 +16,6 @@ class Connect extends Component {
         ConnectStore.on("connect", () => {
             this.setState({
                 connect: true,
-                username: ConnectStore.getUsername(),
-                token_id: ConnectStore.getToken(),
             })
         })
     }
@@ -32,14 +27,17 @@ class Connect extends Component {
 
     failResponseGoogle = (response) => {
         console.log("Failed")
-        this.setState({ connect: false })
+        ConnectStore.setDisconnect();
+        this.setState({
+                connect: false
+        });
         console.log(response);
     }
 
 
     render() {
         let login = null;
-        if (!this.state.connect) {
+        if (!ConnectStore.isConnected()) {
             login = <GoogleLogin
                 clientId="472198434245-m5mjauvu8ddf9fo874bj14v4v60oghu5.apps.googleusercontent.com"
                 buttonText="Login"
@@ -48,7 +46,7 @@ class Connect extends Component {
             />;
         }
         else {
-            login = <p>Hello, {this.state.username}</p>
+            login = <p>Hello, {ConnectStore.getUsername()}</p>
         }
         return (
             <div>

@@ -7,35 +7,34 @@ export default class Clients extends React.Component {
     super();
 
     this.state = {
-      Clients: [],
-      firstname: 'firstname',
-      lastname: 'lastname',
+      clients: [],
+      name: 'name',
+      service: 'service',
     }
 
     ClientsStore.getClients();
   }
 
   componentWillMount() {
-    console.log("will mount Client")
     ClientsStore.on("change", () => {
       this.setState({
-        Clients: ClientsStore.getAll()
+        clients: ClientsStore.getAll()
       })
     })
     ClientsStore.on("create", () => {
+      console.log("refresh client")
       this.setState({
-        Clients: ClientsStore.getAll()
+        clients: ClientsStore.getAll()
       })
     })
   }
 
   createClient() {
-    var Client = {
-      FirstName: this.state.firstname,
-      LastName: this.state.lastname,
+    var client = {
+      Name: this.state.name,
+      Service: this.state.service,
     }
-    console.log(Client);
-    ClientsStore.createClient(Client);
+    ClientsStore.createClient(client);
   }
 
   handleInputChange(event) {
@@ -50,12 +49,9 @@ export default class Clients extends React.Component {
 
   render() {
 
-    ClientsStore.getAll();
-    console.log(this.state.Clients);
-    const ClientsComponents = this.state.Clients.map((Client) => {
-      return <Client key={Client.id} {...Client} />;
+    const ClientsComponents = this.state.clients.map((client) => {
+      return <Client key={client.id} {...client} />;
     })
-
 
     return (
       <div className="content">
@@ -70,8 +66,8 @@ export default class Clients extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-12">
-                <input type="text" name="firstname" value={this.state.firstname} onChange={this.handleInputChange.bind(this)} />
-                <input type="text" name="lastname" value={this.state.lastname} onChange={this.handleInputChange.bind(this)} />
+                <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange.bind(this)} />
+                <input type="text" name="service" value={this.state.service} onChange={this.handleInputChange.bind(this)} />
                 <button onClick={this.createClient.bind(this)}>Create Client</button>
               </div>
             </div>

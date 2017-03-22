@@ -22,7 +22,6 @@ class ConsultantsStore extends EventEmitter {
                 body: JSON.stringify(consultantData),
             }).then(response => response.json())
             .then(json => {
-                console.log(json);
                 this.consultants.push(json);
                 this.emit("create")
             });
@@ -37,7 +36,6 @@ class ConsultantsStore extends EventEmitter {
                 }
             }).then(response => response.json())
             .then(json => {
-                console.log(json);
                 this.consultants = json;
                 this.emit("change")
             });

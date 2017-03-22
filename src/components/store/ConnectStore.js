@@ -25,6 +25,10 @@ class ConnectStore extends EventEmitter {
             });
     }
 
+    setDisconnect(){
+        this.connect = false;
+    }
+
     getUsername(){
         return this.username;
     }
