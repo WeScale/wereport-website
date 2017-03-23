@@ -9,9 +9,9 @@ export default class Client extends React.Component {
     const { id, name, service } = this.props;
 
     return (
-      <li>
-        <span>{id}</span>:<span>{name}</span> <span>{service}</span>
-      </li>
+      <tr>
+        <td>{id}</td><td>{name}</td><td>{service}</td>
+      </tr>
     );
   }
 }

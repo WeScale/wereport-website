@@ -9,9 +9,9 @@ export default class Consultant extends React.Component {
     const { id, firstname, lastname } = this.props;
 
     return (
-      <li>
-        <span>{id}</span>:<span>{firstname}</span> <span>{lastname}</span>
-      </li>
+      <tr>
+        <td>{id}</td><td>{firstname}</td><td>{lastname}</td>
+      </tr>
     );
   }
 }

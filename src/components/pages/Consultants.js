@@ -6,6 +6,8 @@ export default class Consultants extends React.Component {
   constructor() {
     super();
 
+    this.getConsultants = this.getConsultants.bind(this);
+
     this.state = {
       consultants: [],
       firstname: 'firstname',
@@ -16,17 +18,19 @@ export default class Consultants extends React.Component {
   }
 
   componentWillMount() {
-    console.log("will mount consultant")
-    ConsultantsStore.on("change", () => {
-      this.setState({
-        consultants: ConsultantsStore.getAll()
-      })
+    ConsultantsStore.on("change", this.getConsultants);
+    ConsultantsStore.on("create", this.getConsultants);
+  }
+
+  getConsultants() {
+    this.setState({
+      consultants: ConsultantsStore.getAll()
     })
-    ConsultantsStore.on("create", () => {
-      this.setState({
-        consultants: ConsultantsStore.getAll()
-      })
-    })
+  }
+
+  componentWillUnmount() {
+    ConsultantsStore.removeListener("change", this.getConsultants);
+    ConsultantsStore.removeListener("create", this.getConsultants);
   }
 
   createConsultant() {
@@ -61,12 +65,24 @@ export default class Consultants extends React.Component {
 
             <div className="row">
               <div className="col-md-12">
-                <h1>Consultants</h1>
-                <ul>{ConsultantsComponents}</ul>
+                <h1 className="title">Consultants</h1>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>FirstName</th>
+                      <th>Lastname</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ConsultantsComponents}
+                  </tbody>
+                </table>
               </div>
             </div>
             <div className="row">
               <div className="col-md-12">
+                <h1 className="title">Ajouter un consultant</h1>
                 <input type="text" name="firstname" value={this.state.firstname} onChange={this.handleInputChange.bind(this)} />
                 <input type="text" name="lastname" value={this.state.lastname} onChange={this.handleInputChange.bind(this)} />
                 <button onClick={this.createConsultant.bind(this)}>Create consultant</button>

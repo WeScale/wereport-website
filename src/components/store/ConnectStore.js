@@ -1,4 +1,5 @@
 import { EventEmitter } from "events";
+import AppStore from './AppStore';
 
 class ConnectStore extends EventEmitter {
     constructor() {
@@ -10,7 +11,7 @@ class ConnectStore extends EventEmitter {
 
     getUserInfo(token) {
         this.token_id = token;
-        fetch('http://localhost:8080/connect', {
+        fetch('http://'+AppStore.getBackendAPI()+'/connect', {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

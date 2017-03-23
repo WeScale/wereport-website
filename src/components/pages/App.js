@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import logo from '../img/logo.svg';
 import Connect from './Connect';
 
 class App extends Component {
   render() {
     return (
-      <div className="content">
-        <section>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h2>WeReport app page</h2>
+      <section className="home-top">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 home-content">
+              <h1>WeReport app page</h1>
+              <p>
                 <Connect />
-              </div>
+              </p>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     );
   }
 }
