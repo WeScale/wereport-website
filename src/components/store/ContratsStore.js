@@ -3,12 +3,12 @@ import ConnectStore from './ConnectStore';
 import AppStore from './AppStore';
 import dispatcher from '../dispatcher';
 
-import * as ClientsActions from "../actions/ClientsActions";
+import * as ContratsActions from "../actions/ContratsActions";
 
-class ClientsStore extends EventEmitter {
+class ContratsStore extends EventEmitter {
     constructor() {
         super();
-        this.clients = [
+        this.contrats = [
         ]
 
 
@@ -17,7 +17,7 @@ class ClientsStore extends EventEmitter {
     }
 
     connectWebSocket(){
-        this.ws = new WebSocket('ws://'+AppStore.getBackendWS()+'/clients');
+        this.ws = new WebSocket('ws://'+AppStore.getBackendWS()+'/contrats');
         console.log("websocket", this.ws)
         this.ws.onmessage = this.handleData.bind(this);
     }
@@ -25,29 +25,29 @@ class ClientsStore extends EventEmitter {
     handleData(data) {
         console.log(data.data);
         let result = JSON.parse(data.data);
-        ClientsActions.createClient(result);
+        ContratsActions.createContrat(result);
     }
 
     getAll() {
-        return this.clients;
+        return this.contrats;
     }
 
-    createClient(clientData) {
-        fetch('http://'+AppStore.getBackendAPI()+'/clients', {
+    createContrat(contratData) {
+        fetch('http://'+AppStore.getBackendAPI()+'/contrats', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': ConnectStore.getToken(),
             },
-            body: JSON.stringify(clientData),
+            body: JSON.stringify(contratData),
         }).then(response => response.json())
             .then(json => {
                 console.log("client create")
             });
     }
 
-    getClients() {
-        fetch('http://'+AppStore.getBackendAPI()+'/clients', {
+    getContrats() {
+        fetch('http://'+AppStore.getBackendAPI()+'/contrats', {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -56,9 +56,9 @@ class ClientsStore extends EventEmitter {
         }).then(response => response.json())
             .then(json => {
                 if (json == null) {
-                    this.clients = [];
+                    this.contrats = [];
                 } else {
-                    this.clients = json;
+                    this.contrats = json;
                 }
                 this.emit("change")
             });
@@ -67,8 +67,8 @@ class ClientsStore extends EventEmitter {
 
     handleActions(event) {
         switch (event.type) {
-            case 'CREATE_CLIENT':
-                this.clients.push(event.text);
+            case 'CREATE_CONTRAT':
+                this.contrats.push(event.text);
                 this.emit("create");
                 break;
 
@@ -79,7 +79,7 @@ class ClientsStore extends EventEmitter {
     }
 }
 
-const clientsStore = new ClientsStore();
-dispatcher.register(clientsStore.handleActions.bind(clientsStore));
+const contratsStore = new ContratsStore();
+dispatcher.register(contratsStore.handleActions.bind(contratsStore));
 
-export default clientsStore;
+export default contratsStore;

@@ -11,8 +11,11 @@ import {
 import App from './components/pages/App';
 import Consultants from './components/pages/Consultants';
 import Clients from './components/pages/Clients';
+import Contrats from './components/pages/Contrats';
 import NoMatch from './components/pages/NoMatch';
 import Nav from './components/layout/Nav';
+
+import Me from './components/pages/Me';
 
 
 import './index.css';
@@ -33,21 +36,19 @@ const routes = [
     path: '/clients',
     sidebar: () => <div>Clients</div>,
     main: () => <Clients />
+  },
+  {
+    path: '/me',
+    sidebar: () => <div>Me</div>,
+    main: () => <Me />
+  },
+  {
+    path: '/contrats',
+    sidebar: () => <div>Contrats</div>,
+    main: () => <Contrats />
   }
 ]
 
-/*
-ReactDOM.render(
-   <Router history={hashHistory}>
-        <Route path="/" exact component={Layout}>
-            <IndexRoute name="app" component={App} />
-            <Route path="connect" name="connect" component={Connect}/>
-            <Route path="consultants(/:consultantid)" name="consultants" component={Consultants}></Route>
-            <Route path="clients(/:clientid)" name="clients" component={Clients}></Route>
-        </Route>
-    </Router>,
-  document.getElementById('root')
-);*/
 
 ReactDOM.render(
   <Router>

@@ -12,6 +12,11 @@ class ConsultantsStore extends EventEmitter {
         this.consultants = [
         ]
 
+        this.connectWebSocket = this.connectWebSocket.bind(this);
+        AppStore.on("config_receive", this.connectWebSocket);
+    }
+
+    connectWebSocket(){
         this.ws = new WebSocket('ws://'+AppStore.getBackendWS()+'/consultants');
         console.log("websocket", this.ws)
         this.ws.onmessage = this.onMessage.bind(this);

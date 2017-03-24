@@ -55,7 +55,7 @@ export default class Clients extends React.Component {
 
   render() {
 
-    const ClientsComponents = this.state.clients.map((client) => {
+    var ClientsComponents = this.state.clients.map((client) => {
       return <Client key={client.id} {...client} />;
     })
 

@@ -53,7 +53,7 @@ export default class Consultants extends React.Component {
 
   render() {
 
-    const ConsultantsComponents = this.state.consultants.map((consultant) => {
+    var ConsultantsComponents = this.state.consultants.map((consultant) => {
       return <Consultant key={consultant.id} {...consultant} />;
     })
 
@@ -72,6 +72,7 @@ export default class Consultants extends React.Component {
                       <th>Id</th>
                       <th>FirstName</th>
                       <th>Lastname</th>
+                      <th>Email</th>
                     </tr>
                   </thead>
                   <tbody>

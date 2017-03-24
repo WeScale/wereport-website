@@ -1,7 +1,6 @@
 import React from "react";
 
 import {
-  Route,
   Link
 } from 'react-router-dom';
 
@@ -34,8 +33,10 @@ export default class Nav extends React.Component {
     if (this.state.connect) {
       menu = <ul className="nav navbar-nav menu-links">
         <li><Link to="/">Home</Link></li>
+        <li><Link to="/me">{ConnectStore.getUsername()}</Link></li>
         <li><Link to="/clients">Clients</Link></li>
         <li><Link to="/consultants">Consultants</Link></li>
+        <li><Link to="/contrats">Contrats</Link></li>
         <li><a href="http://blog.wescale.fr/">Blog</a></li>
       </ul>;
     } else {
@@ -58,8 +59,8 @@ export default class Nav extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="/"><img src="http://www.wescale.fr/images/logo.png"
-              alt="Wescale - Cloud Expert logo" width="148" height="58" /></a>
+            <Link className="navbar-brand" to="/"><img src="http://www.wescale.fr/images/logo.png"
+              alt="Wescale - Cloud Expert logo" width="148" height="58" /></Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -67,7 +68,7 @@ export default class Nav extends React.Component {
             {menu}
 
             <ul className="nav navbar-nav navbar-right">
-              <li>
+              {/*<li>
                 {this.props.routes.map((route, index) => (
                   // You can render a <Route> in as many places
                   // as you want in your app. It will render along
@@ -83,7 +84,7 @@ export default class Nav extends React.Component {
                     component={route.sidebar}
                   />
                 ))}
-              </li>
+              </li>*/}
               <li className="socials">
                 <a href="https://twitter.com/yeswescale" title="Twitter"><i className="fa fa-twitter"
                   aria-hidden="true"></i></a>
