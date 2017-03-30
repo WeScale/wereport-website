@@ -90,10 +90,10 @@ export default class Consultants extends React.Component {
                 <p>
                   Les consultants sont ajoutés dès leur première connexion
                 </p>
-                <input type="text" name="firstname" value={this.state.firstname} onChange={this.handleInputChange.bind(this)} />
+                {/*<input type="text" name="firstname" value={this.state.firstname} onChange={this.handleInputChange.bind(this)} />
                 <input type="text" name="lastname" value={this.state.lastname} onChange={this.handleInputChange.bind(this)} />
                 <input type="text" name="email" value={this.state.email} onChange={this.handleInputChange.bind(this)} />
-                <button onClick={this.createConsultant.bind(this)}>Create consultant</button>
+                <button onClick={this.createConsultant.bind(this)}>Create consultant</button>*/}
               </div>
             </div>
           </div>
