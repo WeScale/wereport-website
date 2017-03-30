@@ -21,7 +21,6 @@ class Staffing extends Component {
   }
 
   componentWillMount() {
-    console.log("mount Staffing")
     ReportsStore.on("change_all", this.getReports);
     ReportsStore.getReportsAllConsultants();
   }
@@ -33,7 +32,6 @@ class Staffing extends Component {
   }
 
   componentWillUnmount() {
-    console.log("unmount Staffing")
     ReportsStore.removeListener("change_all", this.getReports);
   }
 
