@@ -9,3 +9,43 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+#input-field {
+  background-color: rgba(255,255,255,0.1);
+  height: 100%;
+     width: 100%; 
+     box-sizing: border-box;
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing: border-box;
+}
+
+#input-field-one {
+  background-color: rgba(61,104,11,0.8);
+  height: 100%;
+     width: 100%; 
+     box-sizing: border-box;
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing: border-box;
+}
+
+#input-field-middle {
+  background-color: rgba(87,150,14,0.8);
+  height: 100%;
+     width: 100%; 
+     box-sizing: border-box;
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing: border-box;
+}
+
+#input-field-we {
+  background-color: rgba(150,150,150,0.8);
+  height: 100%;
+     width: 100%; 
+     box-sizing: border-box;
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing: border-box;
+}
+
+.table>tbody>tr>td {
+  padding: 0px;
+}

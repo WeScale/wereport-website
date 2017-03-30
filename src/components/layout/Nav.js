@@ -30,6 +30,10 @@ export default class Nav extends React.Component {
 
   render() {
     let menu = null
+    let hiddenMenu = null
+    if(ConnectStore.getProfil()!=='CONSULTANT'){
+      hiddenMenu = <li><Link to="/staffing">Staffing</Link></li>
+    }
     if (this.state.connect) {
       menu = <ul className="nav navbar-nav menu-links">
         <li><Link to="/">Home</Link></li>
@@ -37,7 +41,7 @@ export default class Nav extends React.Component {
         <li><Link to="/clients">Clients</Link></li>
         <li><Link to="/consultants">Consultants</Link></li>
         <li><Link to="/contrats">Contrats</Link></li>
-        <li><a href="http://blog.wescale.fr/">Blog</a></li>
+        {hiddenMenu}
       </ul>;
     } else {
       menu = <ul className="nav navbar-nav menu-links">

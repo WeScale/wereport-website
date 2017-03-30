@@ -13,11 +13,12 @@ class ConsultantsStore extends EventEmitter {
         ]
 
         this.connectWebSocket = this.connectWebSocket.bind(this);
+        this.getConsultants = this.getConsultants.bind(this);
         AppStore.on("config_receive", this.connectWebSocket);
     }
 
-    connectWebSocket(){
-        this.ws = new WebSocket('ws://'+AppStore.getBackendWS()+'/consultants');
+    connectWebSocket() {
+        this.ws = new WebSocket('ws://' + AppStore.getBackendWS() + '/consultants');
         console.log("websocket", this.ws)
         this.ws.onmessage = this.onMessage.bind(this);
         this.ws.onopen = this.onOpen.bind(this);
@@ -25,15 +26,15 @@ class ConsultantsStore extends EventEmitter {
         this.ws.onclose = this.onClose.bind(this);
     }
 
-    onOpen(){
+    onOpen() {
         console.log("On open");
     }
 
-    onError(error){
+    onError(error) {
         console.error(error);
     }
 
-    onClose(data){
+    onClose(data) {
         console.log("on close", data);
     }
 
@@ -43,11 +44,24 @@ class ConsultantsStore extends EventEmitter {
     }
 
     getAll() {
+        if (this.consultants.length === 0) {
+            this.getConsultants();
+        }
         return this.consultants;
     }
 
+
+    getOneConsultant(consultantid) {
+        for (var i = 0; i !== this.consultants.length; i++) {
+            if (this.consultants[i].id === consultantid) {
+                return this.consultants[i];
+            }
+        }
+        return null;
+    }
+
     createConsultant(consultantData) {
-        fetch('http://'+AppStore.getBackendAPI()+'/consultants', {
+        fetch('http://' + AppStore.getBackendAPI() + '/consultants', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -63,7 +77,7 @@ class ConsultantsStore extends EventEmitter {
     }
 
     getConsultants() {
-        fetch('http://'+AppStore.getBackendAPI()+'/consultants', {
+        fetch('http://' + AppStore.getBackendAPI() + '/consultants', {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

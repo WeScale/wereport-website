@@ -13,6 +13,7 @@ import Consultants from './components/pages/Consultants';
 import Clients from './components/pages/Clients';
 import Contrats from './components/pages/Contrats';
 import NoMatch from './components/pages/NoMatch';
+import Staffing from './components/pages/Staffing';
 import Nav from './components/layout/Nav';
 
 import Me from './components/pages/Me';
@@ -46,6 +47,11 @@ const routes = [
     path: '/contrats',
     sidebar: () => <div>Contrats</div>,
     main: () => <Contrats />
+  },
+  {
+    path: '/staffing',
+    sidebar: () => <div>Staffing</div>,
+    main: () => <Staffing />
   }
 ]
 

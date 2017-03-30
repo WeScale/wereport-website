@@ -84,9 +84,17 @@ export default class Clients extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <h1 className="title">Ajouter un client</h1>
-                <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange.bind(this)} />
-                <input type="text" name="service" value={this.state.service} onChange={this.handleInputChange.bind(this)} />
-                <button onClick={this.createClient.bind(this)}>Create Client</button>
+                <div className="form-group">
+                  <label htmlFor="name">TJM:</label>
+                  <input type="text" name="name" id="name" className="form-control" value={this.state.name} onChange={this.handleInputChange.bind(this)} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="service">TJM:</label>
+                  <input type="text" name="service" id="service" className="form-control" value={this.state.service} onChange={this.handleInputChange.bind(this)} />
+                </div>
+                <div className="form-group">
+                  <button onClick={this.createClient.bind(this)}>Create Client</button>
+                </div>
               </div>
             </div>
           </div>

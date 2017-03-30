@@ -8,6 +8,7 @@ class ConnectStore extends EventEmitter {
         this.username = '';
         this.email = '';
         this.wereportid = '';
+        this.profil = '';
         this.connect = false;
     }
 
@@ -26,6 +27,7 @@ class ConnectStore extends EventEmitter {
                 this.connect = true;
                 this.email = json.email;
                 this.wereportid = json.wereportid;
+                this.profil = json.profil;
                 this.emit("connect");
             });
     }
@@ -49,6 +51,10 @@ class ConnectStore extends EventEmitter {
 
     getToken(){
         return this.token_id;
+    }
+
+    getProfil(){
+        return this.profil;
     }
 
     isConnected(){

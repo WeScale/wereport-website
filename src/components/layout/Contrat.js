@@ -6,11 +6,11 @@ export default class Contrat extends React.Component {
   }
 
   render() {
-    const { id, tjm, bdc, client, consultant } = this.props;
+    const { name, tjm, bdc, client, consultant } = this.props;
 
     return (
       <tr>
-        <td>{id}</td>
+        <td>{name}</td>
         <td>{client.name} {client.service}</td>
         <td>{consultant.firstname} {consultant.lastname}</td>
         <td>{tjm}</td>

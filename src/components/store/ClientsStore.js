@@ -9,9 +9,10 @@ class ClientsStore extends EventEmitter {
     constructor() {
         super();
         this.clients = [
-        ]
+        ];
+        this.client = {};
 
-
+        this.getClients = this.getClients.bind(this);
         this.connectWebSocket = this.connectWebSocket.bind(this);
         AppStore.on("config_receive", this.connectWebSocket);
     }
@@ -23,13 +24,19 @@ class ClientsStore extends EventEmitter {
     }
 
     handleData(data) {
-        console.log(data.data);
         let result = JSON.parse(data.data);
         ClientsActions.createClient(result);
     }
 
     getAll() {
+        if(this.clients.length === 0){
+            this.getClients();
+        }
         return this.clients;
+    }
+
+    getCurrentClient(){
+        return this.client;
     }
 
     createClient(clientData) {
@@ -60,7 +67,25 @@ class ClientsStore extends EventEmitter {
                 } else {
                     this.clients = json;
                 }
-                this.emit("change")
+                this.emit("change");
+            });
+    }
+
+    getClient(clientid) {
+        fetch('http://'+AppStore.getBackendAPI()+'/clients/'+clientid, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': ConnectStore.getToken(),
+            }
+        }).then(response => response.json())
+            .then(json => {
+                if (json == null) {
+                    this.client = {};
+                } else {
+                    this.client = json;
+                }
+                this.emit("get_client");
             });
     }
 

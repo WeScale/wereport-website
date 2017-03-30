@@ -21,12 +21,10 @@ class Connect extends Component {
     }
 
     successResponseGoogle = (response) => {
-        console.log("Success")
         ConnectStore.getUserInfo(response.tokenId)
     }
 
     failResponseGoogle = (response) => {
-        console.log("Failed")
         ConnectStore.setDisconnect();
         this.setState({
                 connect: false
@@ -46,7 +44,8 @@ class Connect extends Component {
             />;
         }
         else {
-            login = <p>Hello, {ConnectStore.getUsername()}</p>
+            login = <div><p>Hello, {ConnectStore.getUsername()}</p>
+                <p>Role: {ConnectStore.getProfil()}</p></div>;
         }
         return (
             <div>

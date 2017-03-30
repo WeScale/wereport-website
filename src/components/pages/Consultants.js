@@ -12,6 +12,7 @@ export default class Consultants extends React.Component {
       consultants: [],
       firstname: 'firstname',
       lastname: 'lastname',
+      email: 'email',
     }
 
     ConsultantsStore.getConsultants();
@@ -37,6 +38,8 @@ export default class Consultants extends React.Component {
     var consultant = {
       FirstName: this.state.firstname,
       LastName: this.state.lastname,
+      Email: this.state.email,
+      Profil: 1,
     }
     ConsultantsStore.createConsultant(consultant);
   }
@@ -84,8 +87,12 @@ export default class Consultants extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <h1 className="title">Ajouter un consultant</h1>
+                <p>
+                  Les consultants sont ajoutés dès leur première connexion
+                </p>
                 <input type="text" name="firstname" value={this.state.firstname} onChange={this.handleInputChange.bind(this)} />
                 <input type="text" name="lastname" value={this.state.lastname} onChange={this.handleInputChange.bind(this)} />
+                <input type="text" name="email" value={this.state.email} onChange={this.handleInputChange.bind(this)} />
                 <button onClick={this.createConsultant.bind(this)}>Create consultant</button>
               </div>
             </div>

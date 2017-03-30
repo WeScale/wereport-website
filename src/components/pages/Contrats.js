@@ -13,6 +13,7 @@ export default class Contrats extends React.Component {
 
     this.state = {
       contrats: [],
+      name: 'nameofcontract',
       tjm: 900.33,
       bdc: '1234ABC',
       client_id: '1',
@@ -41,7 +42,8 @@ export default class Contrats extends React.Component {
 
   createContrat() {
     var contrat = {
-      tjm: this.state.tjm,
+      name: this.state.name,
+      tjm: parseFloat(this.state.tjm),
       bdc: this.state.bdc,
       client_id: this.state.client_id,
       consultant_id: this.state.consultant_id,
@@ -100,15 +102,35 @@ export default class Contrats extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <h1 className="title">Ajouter un Contrat</h1>
-                <input type="text" name="tjm" value={this.state.tjm} onChange={this.handleInputChange.bind(this)} />
-                <input type="text" name="bdc" value={this.state.bdc} onChange={this.handleInputChange.bind(this)} />
-                <select name="client_id" value={this.state.client_id} onChange={this.handleInputChange.bind(this)}>
-                  {ClientsListComponent}
-                </select>
-                <select name="consultant_id" value={this.state.consultant_id} onChange={this.handleInputChange.bind(this)}>
-                  {ConsultantsListComponent}
-                </select>
-                <button onClick={this.createContrat.bind(this)}>Create Contrat</button>
+                <div className="form-group">
+                  <label htmlFor="name">Name:</label>
+                  <input type="text" name="name" id="name" className="form-control" value={this.state.name} onChange={this.handleInputChange.bind(this)} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="tjm">TJM:</label>
+                  <input type="text" name="tjm" id="tjm" className="form-control" value={this.state.tjm} onChange={this.handleInputChange.bind(this)} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="bdc">BDC:</label>
+                  <input type="text" name="bdc" id="bdc" className="form-control" value={this.state.bdc} onChange={this.handleInputChange.bind(this)} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="client">Client:</label>
+                  <select name="client_id" id="client" className="form-control" value={this.state.client_id} onChange={this.handleInputChange.bind(this)}>
+                    <option key="0" value="0">Please select</option>
+                    {ClientsListComponent}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="consultant">Consultant:</label>
+                  <select name="consultant_id" id="consultant" className="form-control" value={this.state.consultant_id} onChange={this.handleInputChange.bind(this)}>
+                    <option key="0" value="0">Please select</option>
+                    {ConsultantsListComponent}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <button onClick={this.createContrat.bind(this)}>Create Contrat</button>
+                </div>
               </div>
             </div>
           </div>

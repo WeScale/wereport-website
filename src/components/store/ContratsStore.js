@@ -11,7 +11,12 @@ class ContratsStore extends EventEmitter {
         this.contrats = [
         ]
 
+        this.me_contrats = [
+        ]
 
+        this.contrat = {};
+
+        this.getContrats = this.getContrats.bind(this);
         this.connectWebSocket = this.connectWebSocket.bind(this);
         AppStore.on("config_receive", this.connectWebSocket);
     }
@@ -23,13 +28,23 @@ class ContratsStore extends EventEmitter {
     }
 
     handleData(data) {
-        console.log(data.data);
         let result = JSON.parse(data.data);
         ContratsActions.createContrat(result);
     }
 
     getAll() {
+        if(this.contrats.length === 0){
+            this.getContrats();
+        }
         return this.contrats;
+    }
+
+    getOneConsultant() {
+        return this.me_contrats;
+    }
+
+    getCurrentContrat(){
+        return this.contrat;
     }
 
     createContrat(contratData) {
@@ -42,7 +57,7 @@ class ContratsStore extends EventEmitter {
             body: JSON.stringify(contratData),
         }).then(response => response.json())
             .then(json => {
-                console.log("client create")
+                console.log("contrat create")
             });
     }
 
@@ -61,6 +76,42 @@ class ContratsStore extends EventEmitter {
                     this.contrats = json;
                 }
                 this.emit("change")
+            });
+    }
+
+    getContratsOneConsultant() {
+        fetch('http://'+AppStore.getBackendAPI()+'/contrats/consultant/'+ConnectStore.getWeReportID(), {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': ConnectStore.getToken(),
+            }
+        }).then(response => response.json())
+            .then(json => {
+                if (json == null) {
+                    this.me_contrats = [];
+                } else {
+                    this.me_contrats = json;
+                }
+                this.emit("change_me")
+            });
+    }
+
+    getContrat(contratid) {
+        fetch('http://'+AppStore.getBackendAPI()+'/contrats/'+contratid, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': ConnectStore.getToken(),
+            }
+        }).then(response => response.json())
+            .then(json => {
+                if (json == null) {
+                    this.contrat = {};
+                } else {
+                    this.contrat = json;
+                }
+                this.emit("get_contrat");
             });
     }
 
