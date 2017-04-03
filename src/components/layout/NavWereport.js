@@ -1,12 +1,11 @@
 import React from "react";
 
-import {
-  Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 import ConnectStore from '../store/ConnectStore';
 
-export default class Nav extends React.Component {
+export default class NavWereport extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -23,25 +22,24 @@ export default class Nav extends React.Component {
     })
   }
 
-  toggleCollapse() {
-    const collapsed = !this.state.collapsed;
-    this.setState({ collapsed });
-  }
-
   render() {
     let menu = null
-    let hiddenMenu = null
-    if(ConnectStore.getProfil()!=='CONSULTANT'){
-      hiddenMenu = <li><Link to="/staffing">Staffing</Link></li>
+    let hiddenMenuConsultant = null
+    let hiddenMenuManager = null
+    if (ConnectStore.getProfil() !== 'CONSULTANT') {
+      hiddenMenuConsultant = <li><Link to="/staffing">Staffing</Link></li>
+    }
+    if (ConnectStore.getProfil() !== 'CONSULTANT' && ConnectStore.getProfil() !== 'MANAGER') {
+      hiddenMenuManager = <li><Link to="/factures">Factures</Link></li>
     }
     if (this.state.connect) {
       menu = <ul className="nav navbar-nav menu-links">
-        <li><Link to="/">Home</Link></li>
         <li><Link to="/me">{ConnectStore.getUsername()}</Link></li>
         <li><Link to="/clients">Clients</Link></li>
         <li><Link to="/consultants">Consultants</Link></li>
         <li><Link to="/contrats">Contrats</Link></li>
-        {hiddenMenu}
+        {hiddenMenuConsultant}
+        {hiddenMenuManager}
       </ul>;
     } else {
       menu = <ul className="nav navbar-nav menu-links">

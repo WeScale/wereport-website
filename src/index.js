@@ -14,7 +14,8 @@ import Clients from './components/pages/Clients';
 import Contrats from './components/pages/Contrats';
 import NoMatch from './components/pages/NoMatch';
 import Staffing from './components/pages/Staffing';
-import Nav from './components/layout/Nav';
+import Factures from './components/pages/Factures';
+import NavWereport from './components/layout/NavWereport';
 
 import Me from './components/pages/Me';
 
@@ -52,6 +53,11 @@ const routes = [
     path: '/staffing',
     sidebar: () => <div>Staffing</div>,
     main: () => <Staffing />
+  },
+  {
+    path: '/factures',
+    sidebar: () => <div>Factures</div>,
+    main: () => <Factures />
   }
 ]
 
@@ -59,22 +65,20 @@ const routes = [
 ReactDOM.render(
   <Router>
     <div>
-      
-      <Nav routes={routes} />
-
-        <Switch>
-          {routes.map((route, index) => (
-            // Render more <Route>s with the same paths as
-            // above, but different components this time.
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              component={route.main}
-            />
-          ))}
-          <Route component={NoMatch} />
-        </Switch>
+      <NavWereport routes={routes} />
+      <Switch>
+        {routes.map((route, index) => (
+          // Render more <Route>s with the same paths as
+          // above, but different components this time.
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.main}
+          />
+        ))}
+        <Route component={NoMatch} />
+      </Switch>
     </div>
   </Router>
   , document.getElementById('root')

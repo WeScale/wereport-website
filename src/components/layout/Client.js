@@ -10,7 +10,9 @@ export default class Client extends React.Component {
 
     return (
       <tr>
-        <td>{id}</td><td>{name}</td><td>{service}</td>
+        <td>{id}</td>
+        <td>{name}</td>
+        <td>{service}</td>
       </tr>
     );
   }
