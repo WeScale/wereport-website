@@ -26,13 +26,28 @@ export default class ClientReport extends React.Component {
     })
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log("receive props");
+    this.setState({
+      contrat_id: nextProps.contrat.id,
+      list_days: nextProps.list_days,
+      contrat: nextProps.contrat,
+      report_id: nextProps.id,
+      nonworkdayList: nextProps.nonworkday,
+      showonly: nextProps.showonly,
+      consultant: nextProps.consultant,
+    })
+  }
+
   componentWillMount() {
     //ContratsStore.on("get_contrat", this.getContrat);
+    ReportsStore.on("change_all", this.getContrat);
   }
 
 
   componentWillUnmount() {
     //ContratsStore.removeListener("get_contrat", this.getContrat);
+    ReportsStore.removeListener("change_all", this.getContrat);
   }
 
   handleChangeContrat(event) {

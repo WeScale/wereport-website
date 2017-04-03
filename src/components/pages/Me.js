@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ConnectStore from '../store/ConnectStore';
 import ContratsStore from '../store/ContratsStore';
-import Contrat from '../layout/Contrat';
 import ClientReport from '../layout/ClientReport';
 import ReportsStore from '../store/ReportsStore';
 
@@ -60,10 +58,6 @@ class Me extends Component {
   }
 
   render() {
-    var ContratsComponents = this.state.contrats.map((contrat) => {
-      return <Contrat key={contrat.id} {...contrat} />;
-    })
-
     var DaysComponents = this.getDaysInMonth().map((day) => {
       return <th key={day.getDate()}>{day.getDate()}</th>;
     })
@@ -92,11 +86,6 @@ class Me extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h1 className="title">{ConnectStore.getUsername()}</h1>
-                <div>
-                  <p>Email: {ConnectStore.getEmail()}</p>
-                  <p>WeReportID: {ConnectStore.getWeReportID()}</p>
-                </div>
                 <h1 className="title">Mon mois en cours</h1>
                 <table className="table">
                   <thead>
@@ -107,21 +96,6 @@ class Me extends Component {
                   </thead>
                   <tbody>
                     {ReportDayComponents}
-                  </tbody>
-                </table>
-                <h1 className="title">Mes contrats en cours</h1>
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Client</th>
-                      <th>Consultant</th>
-                      <th>Tjm</th>
-                      <th>Bdc</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {ContratsComponents}
                   </tbody>
                 </table>
               </div>

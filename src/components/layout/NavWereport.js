@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Link } from 'react-router-dom';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 import ConnectStore from '../store/ConnectStore';
 
@@ -26,18 +25,20 @@ export default class NavWereport extends React.Component {
     let menu = null
     let hiddenMenuConsultant = null
     let hiddenMenuManager = null
+    let hiddenMenuContrat = null
     if (ConnectStore.getProfil() !== 'CONSULTANT') {
       hiddenMenuConsultant = <li><Link to="/staffing">Staffing</Link></li>
     }
     if (ConnectStore.getProfil() !== 'CONSULTANT' && ConnectStore.getProfil() !== 'MANAGER') {
       hiddenMenuManager = <li><Link to="/factures">Factures</Link></li>
+      hiddenMenuContrat = <li><Link to="/contrats">Contrats</Link></li>
     }
     if (this.state.connect) {
       menu = <ul className="nav navbar-nav menu-links">
         <li><Link to="/me">{ConnectStore.getUsername()}</Link></li>
         <li><Link to="/clients">Clients</Link></li>
         <li><Link to="/consultants">Consultants</Link></li>
-        <li><Link to="/contrats">Contrats</Link></li>
+        {hiddenMenuContrat}
         {hiddenMenuConsultant}
         {hiddenMenuManager}
       </ul>;

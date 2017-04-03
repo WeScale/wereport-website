@@ -6,11 +6,10 @@ export default class Client extends React.Component {
   }
 
   render() {
-    const { id, name, service } = this.props;
+    const { name, service } = this.props;
 
     return (
       <tr>
-        <td>{id}</td>
         <td>{name}</td>
         <td>{service}</td>
       </tr>
