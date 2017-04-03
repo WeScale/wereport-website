@@ -88,12 +88,12 @@ export default class NavWereport extends React.Component {
                 ))}
               </li>*/}
               <li className="socials">
-                <a href="https://twitter.com/yeswescale" title="Twitter"><i className="fa fa-twitter"
+                <a href="https://twitter.com/yeswescale" target="_blank" title="Twitter"><i className="fa fa-twitter"
                   aria-hidden="true"></i></a>
-                <a href="https://www.linkedin.com/company/wescale" title="Linkedin"><i className="fa fa-linkedin"
+                <a href="https://www.linkedin.com/company/wescale" target="_blank" title="Linkedin"><i className="fa fa-linkedin"
                   aria-hidden="true"></i></a>
-                <a href="https://github.com/WeScale" title="Github"><i className="fa fa-github"></i></a>
-                <a href="https://speakerdeck.com/wescale" title="Speaker Deck"><i className="fa fa-slideshare"></i></a>
+                <a href="https://github.com/WeScale" target="_blank" title="Github"><i className="fa fa-github"></i></a>
+                <a href="https://speakerdeck.com/wescale" target="_blank" title="Speaker Deck"><i className="fa fa-slideshare"></i></a>
               </li>
             </ul>
           </div>

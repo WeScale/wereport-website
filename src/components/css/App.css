@@ -49,3 +49,8 @@
 .table>tbody>tr>td {
   padding: 0px;
 }
+
+.socials>a {
+    margin-right: 5px;
+}
+
