@@ -56,5 +56,3 @@ class Connect extends Component {
 }
 
 export default Connect;
-
-// 7qQtmW380lQFCgTZBUcBjAZb
